@@ -1,0 +1,1543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meditree</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    background: #fff;
+}
+
+/* NAV WRAPPER */
+.nav-wrapper {
+    position: fixed;
+    top: 24px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    z-index: 999;
+    transition: all 0.4s ease;
+}
+
+/* NAVBAR */
+.custom-navbar {
+    width: 88%;
+    max-width: 1150px;
+    background: #fff;
+    border-radius: 60px;
+    padding: 12px 32px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    transition: all 0.4s ease;
+}
+
+/* SCROLL MODE */
+.nav-wrapper.scrolled {
+    top: 0;
+}
+
+.nav-wrapper.scrolled .custom-navbar {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 0;
+    padding: 14px 50px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+
+/* NAV TEXT */
+.nav-link {
+    color: #6b6b6b !important;
+    font-weight: 500;
+    margin: 0 8px;
+}
+
+.nav-link:hover {
+    color: #000 !important;
+}
+
+/* BUTTON */
+.btn-sign {
+    background: #000;
+    color: #fff;
+    border-radius: 30px;
+    padding: 6px 18px;
+}
+
+/* HERO */
+.hero {
+    height: 100vh;
+    position: relative;
+    background: url('https://images.unsplash.com/photo-1544367567-0f2fcb009e0b') center/cover no-repeat;
+
+    display: flex;
+    align-items: center;
+    justify-content: center; /* TAMBAHAN */
+    
+    padding-top: 0; /* HAPUS yang lama */
+}
+
+/* OVERLAY (BIAR TEXT KEBACA, BUKAN BLUR) */
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+}
+
+/* HERO CONTENT */
+.hero-content {
+    position: relative;
+    color: #fff;
+}
+
+/* TITLE */
+.hero h1 {
+    font-size: 64px;
+    font-weight: 600;
+    line-height: 1.1;
+}
+
+/* SUBTEXT */
+.hero p {
+    opacity: 0.85;
+}
+
+/* BUTTON */
+.btn-main {
+    background: #fff;
+    border-radius: 40px;
+    padding: 12px 24px;
+    border: none;
+    font-weight: 500;
+}
+
+/* TAGS */
+.tag {
+    background: rgba(255,255,255,0.2);
+    padding: 6px 16px;
+    border-radius: 20px;
+    margin-right: 10px;
+    font-size: 14px;
+}
+
+/* CARD KANAN */
+.rating-card {
+    position: absolute;
+    right: 8%;
+    bottom: 80px;
+
+    background: #ffffff; /* WAJIB solid */
+    border-radius: 24px;
+    padding: 22px;
+    width: 280px;
+
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+
+    backdrop-filter: none !important;
+    filter: none !important;
+}
+/* ANIMASI */
+.fade-up {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: 0.7s ease;
+}
+
+.fade-up.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* RESPONSIVE */
+@media(max-width: 768px){
+
+    .hero h1 {
+        font-size: 42px;
+    }
+
+    .rating-card {
+        position: static;
+        margin-top: 30px;
+    }
+
+    .custom-navbar {
+        padding: 10px 20px;
+    }
+
+}
+
+/* CARD */
+.card-custom {
+    border: none;
+    border-radius: 20px;
+    overflow: hidden;
+    transition: 0.4s;
+}
+
+.card-custom img {
+    height: 250px;
+    object-fit: cover;
+}
+
+.card-custom:hover {
+    transform: translateY(-10px) scale(1.02);
+}
+
+/* ANIMATION */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: 1s;
+}
+
+.fade-in.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+.hero {
+    height: 95vh;
+    background: url('1.jpg') center/cover no-repeat;
+    position: relative;
+    color: white;
+}
+
+/* OVERLAY */
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(0,0,0,0.75) 30%, rgba(0,0,0,0.2));
+}
+
+/* TEXT POSITION */
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 500px;
+    margin-left: 40px;
+}
+
+.hero h1 {
+    font-size: 3.2rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.sub {
+    opacity: 0.8;
+    margin-bottom: 10px;
+}
+
+/* BUTTON */
+.hero-action {
+    margin-top: 20px;
+}
+
+/* GLASS CARD */
+.glass-card {
+    position: absolute;
+    backdrop-filter: blur(12px);
+    background: rgba(255,255,255,0.15);
+    border-radius: 20px;
+    padding: 15px 20px;
+    color: white;
+    z-index: 2;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+/* LEFT CARD POSITION (PENTING) */
+.card-left {
+    bottom: 40px;
+    left: 60px;
+}
+
+/* RIGHT CARD POSITION */
+.card-right {
+    bottom: 40px;
+    right: 60px;
+}
+
+/* AVATAR */
+.avatars img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-left: -10px;
+    border: 2px solid white;
+}
+img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+.card {
+  overflow: hidden;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+/* gambar */
+.card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+/* efek zoom saat hover */
+.card:hover img {
+  transform: scale(1.1);
+}
+
+/* animasi awal (sebelum muncul) */
+.animate {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s ease;
+}
+
+/* saat muncul */
+.animate.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* THUMB */
+.thumb {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .hero-content {
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .card-left,
+    .card-right {
+        position: static;
+        margin-top: 20px;
+    }
+}
+.glass-card {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    padding: 15px 20px;
+    border-radius: 20px;
+
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(15px);
+
+    color: white;
+    cursor: grab;
+    transition: 0.3s;
+}
+
+.glass-card:active {
+    cursor: grabbing;
+}
+
+.thumb {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+{
+      font-family: 'Poppins', sans-serif;
+      background: #f8f8f8;
+    }
+
+    .feature-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.icon {
+  width: 45px;
+  height: 45px;
+  background: #f5f5f5;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  margin-right: 15px;
+  flex-shrink: 0;
+}
+
+/* optional biar lebih hidup */
+.icon:hover {
+  background: #e0d4c2;
+  transform: scale(1.1);
+  transition: 0.3s;
+}
+    
+
+    /* SECTION */
+    .section {
+      padding: 80px 0;
+    }
+
+    .section-title {
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    /* VIDEO CARD */
+    .video-card {
+      position: relative;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      transition: 0.4s;
+    }
+
+    .video-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .video-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .play-btn {
+      position: absolute;
+      bottom: 15px;
+      left: 15px;
+      background: white;
+      border-radius: 30px;
+      padding: 5px 15px;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+    }
+
+    .play-btn span {
+      width: 25px;
+      height: 25px;
+      background: black;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    /* FAQ */
+    .accordion-button {
+      font-weight: 600;
+    }
+
+    /* INSTRUCTOR */
+    .card-custom {
+      border: none;
+      border-radius: 15px;
+      padding: 20px;
+      transition: 0.4s;
+      background: white;
+      height: 100%;
+    }
+
+    .card-custom:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    }
+
+    .step {
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    /* SCROLL ANIMATION */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: 0.8s;
+    }
+
+    .fade-up.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* SLIDER */
+    .slider {
+      overflow-x: auto;
+      display: flex;
+      gap: 20px;
+      scroll-behavior: smooth;
+      padding-bottom: 10px;
+    }
+
+    .slider::-webkit-scrollbar {
+      display: none;
+    }
+
+    .slider .card-custom {
+      min-width: 280px;
+    }
+
+    .slider-btn {
+      border: none;
+      background: black;
+      color: white;
+      border-radius: 50px;
+      padding: 8px 15px;
+    }
+    .video-container video {
+  object-fit: cover;
+  height: 100%;
+  max-height: 350px;
+  border-radius: 20px;
+}
+
+@media (max-width: 768px) {
+  .video-container video {
+    max-height: 250px;
+  }
+}
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+}
+/* HERO */
+.hero {
+  height: 100vh;
+  background: url('1.jpg') center/cover no-repeat;
+  position: relative;
+}
+
+/* GRADIENT OVERLAY (lebih realistis) */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 20% 50%, rgba(0,0,0,0.85), transparent 60%),
+              linear-gradient(to right, rgba(0,0,0,0.95), rgba(0,0,0,0.6));
+}
+
+/* SOFT BLUR */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(4px);
+}
+
+/* CONTENT */
+.container {
+  position: relative;
+  z-index: 2;
+}
+
+/* TOP BUTTON (GLASS) */
+.top-btn {
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  z-index: 3;
+}
+
+.btn-glass {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  padding: 10px 22px;
+  color: #fff;
+  border-radius: 50px;
+  backdrop-filter: blur(10px);
+  transition: 0.3s;
+}
+
+.btn-glass:hover {
+  background: #fff;
+  color: #000;
+}
+
+/* TEXT */
+.label {
+  font-size: 13px;
+  letter-spacing: 1px;
+  opacity: 0.7;
+}
+
+.title {
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 1.25;
+  margin: 20px 0;
+}
+
+/* SUBSCRIBE */
+.input-wrap {
+  display: flex;
+  width: 320px;
+  background: rgba(255,255,255,0.95);
+  border-radius: 50px;
+  overflow: hidden;
+}
+
+.input-wrap input {
+  border: none;
+  padding: 12px 18px;
+  flex: 1;
+  outline: none;
+}
+
+.input-wrap button {
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 0 18px;
+}
+
+/* SOCIAL */
+.social {
+  margin-top: 18px;
+}
+
+.social i {
+  margin-right: 14px;
+  font-size: 15px;
+  opacity: 0.8;
+  transition: 0.3s;
+}
+
+.social i:hover {
+  color: #d6a85f;
+  transform: translateY(-2px);
+}
+
+/* RIGHT */
+.right h6 {
+  font-size: 15px;
+  margin-bottom: 15px;
+}
+
+.right span {
+  display: block;
+  font-size: 14px;
+  opacity: 0.75;
+  margin-bottom: 6px;
+  transition: 0.3s;
+}
+
+.right span:hover {
+  opacity: 1;
+  color: #d6a85f;
+}
+
+/* ANIMATION */
+.left, .right {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: 1s ease;
+}
+
+.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* FOOTER */
+footer {
+    background: #111;
+    color: #fff;
+    padding: 50px 0;
+}
+.footer {
+  background: #0f0f0f;
+  padding: 20px 10px; /* lebih kecil */
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column; /* vertikal */
+  align-items: center;
+  gap: 5px; /* jarak kecil antar teks */
+}
+
+.footer-title {
+  font-size: 16px; /* diperkecil */
+  margin: 0;
+  color: #fff;
+  font-weight: 500;
+}
+
+.footer-copy {
+  font-size: 12px; /* lebih kecil lagi */
+  margin: 0;
+  color: #aaa;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) 
+  .title {
+    font-size: 32px;
+  }
+
+  .input-wrap {
+    width: 100%;
+  }
+
+  .top-btn {
+    right: 20px;
+  }
+
+ {
+    font-family: 'Segoe UI', sans-serif;
+    background: #fff;
+}
+
+/* SECTION */
+.hero {
+    padding: 60px 0;
+}
+
+/* Feature box */
+.feature-box {
+    display: flex;
+    align-items: start;
+    margin-bottom: 30px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease;
+}
+
+.feature-box.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.icon-box {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    font-size: 20px;
+    color: white;
+    transition: 0.3s;
+}
+
+/* warna icon */
+.icon-purple { background: #6c63ff; }
+.icon-green { background: #28a745; }
+.icon-blue { background: #007bff; }
+
+/* hover */
+.feature-box:hover .icon-box {
+    transform: scale(1.1) rotate(5deg);
+}
+
+/* Video */
+.video-box {
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Responsive spacing */
+@media(max-width: 768px) {
+    .hero {
+        text-align: center;
+    }
+}
+ {
+    background: #f8f9fa;
+}
+
+/* Section */
+.section-yoga {
+    padding: 80px 0;
+}
+
+/* Geser kiri sedikit ke kanan */
+.content-left {
+    padding-left: 40px;
+}
+
+/* Item feature */
+.feature-box {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+    align-items: start;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: 0.6s;
+}
+
+.feature-box.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Icon kotak */
+.icon-box {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    color: white;
+}
+
+/* Warna icon */
+.icon1 { background: #4e73df; }
+.icon2 { background: #1cc88a; }
+.icon3 { background: #36b9cc; }
+
+/* Video */
+
+
+video {
+    width: 100%;
+    display: block;
+}
+
+/* Tombol play */
+.play-btn {
+   
+    
+   
+    font-size: 24px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+
+
+/* Animasi hover feature */
+.feature-box:hover {
+    transform: translateY(-5px);
+}
+
+/* Responsive */
+@media(max-width: 768px){
+    .content-left {
+        padding-left: 0;
+        margin-bottom: 40px;
+    }
+}
+.video-container {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    max-width: 600px;
+    margin: auto;
+}
+
+/* Video */
+.video-container video {
+    width: 100%;
+    border-radius: 20px;
+}
+
+/* Tombol custom */
+.custom-play {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    background: #6c757d; /* abu-abu */
+    color: white;
+    border: none;
+    padding: 12px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+}
+
+/* Hover animasi */
+.custom-play:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/* Animasi muncul */
+.video-container:hover .custom-play {
+    transform: translateY(-5px);
+}
+.play-btn {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.play-btn::before,
+.play-btn::after {
+  display: none !important;
+}
+.auth-box {
+    background: white;
+    padding: 8px 12px;
+    border-radius: 50px;
+}
+
+/* login */
+.login-link {
+    color: #555;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+/* SIGN UP */
+.signup-btn {
+    background: #20c997; /* hijau mint (calm) */
+    color: white;
+    padding: 6px 16px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: 0.3s;
+}
+
+/* hover */
+.signup-btn:hover {
+    background: #1aa179;
+    transform: translateY(-2px);
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="nav-wrapper">
+    <nav class="custom-navbar d-flex justify-content-between align-items-center">
+
+        <div class="fw-bold">Meditation</div>
+
+        <ul class="nav d-none d-md-flex">
+            <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
+            <li class="nav-item"><a class="nav-link" href="#about us">About Us</a></li>
+            <li class="nav-item"><a class="nav-link" href="#trainers">Trainers</a></li>
+            <li class="nav-item"><a class="nav-link" href="#testimonials">Testimonials</a></li>
+        </ul>
+
+        <div class="auth-box d-flex align-items-center">
+    <a href="#" class="login-link me-3">Login</a>
+
+    <a href="#" class="signup-btn">
+        <i class="bi bi-person-plus"></i> Sign Up
+    </a>
+</div>
+
+    </nav>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+    <div class="container hero-content d-flex align-items-center" style="min-height:100vh;">
+
+        <div>
+            <p>Daily Fitness Guide</p>
+            <h1>Meditations change</h1>
+             <h2>your lifestyle</h2>
+
+            <button class="btn-main mt-3">
+                Get in touch →
+            </button>
+
+            <div class="mt-4">
+                <span class="tag">New Fitness</span>
+                <span class="tag">Health Care</span>
+                <span class="tag">Yoga Guide</span>
+            </div>
+        </div>
+
+    </div>
+    </section>
+
+    <!-- CARD -->
+    <div class="rating-card fade-up">
+        <p class="mb-1">The perfect experience</p>
+        <h2>4.9 ⭐</h2>
+        <small>(12k reviews)</small>
+    </div>
+
+</section>
+
+<script>
+
+/* NAV SCROLL */
+window.addEventListener("scroll", () => {
+    document.querySelector(".nav-wrapper")
+    .classList.toggle("scrolled", window.scrollY > 50);
+});
+
+/* ANIMASI */
+window.onload = () => {
+    document.querySelectorAll(".fade-up").forEach(el=>{
+        el.classList.add("show");
+    });
+};
+
+</script>
+
+
+
+<!-- CARDS -->
+<div class="container text-center" id="features">
+  <h1 class="section-title mt-5">Start Your Journey Today</h2>
+
+  <div class="row">
+    
+    <div class="col-md-4 d-flex">
+      <div class="card w-100">
+        <img src="2.jpg" class="card-img-top">
+        <div class="card-body">
+          <h5>Improved Flexibility</h5>
+          <p>Stretch your body and relax.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 d-flex">
+      <div class="card w-100">
+        <img src="3.jpg" class="card-img-top">
+        <div class="card-body">
+          <h5>Stress Reduction</h5>
+          <p>Calm your mind and body.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 d-flex">
+      <div class="card w-100">
+        <img src="4.jpg" class="card-img-top">
+        <div class="card-body">
+          <h5>Better Focus</h5>
+          <p>Improve your concentration.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<script>
+const elements = document.querySelectorAll('.animate');
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry{
+    if (entry.isIntersecting) {
+      entry.target.classList.add('show');
+    }
+  });
+}, {
+  threshold: 0.2
+});
+elements.forEach(el => observer.observe(el));
+</script>
+<div class="container section-yoga" id="about us">
+    <div class="row align-items-center">
+
+        <!-- LEFT -->
+        <div class="col-md-6 content-left">
+            <h1 class="mb-4">Your Life For Greater Self Of Yoga</h1>
+
+            <div class="feature-box">
+                <div class="icon-box icon1">🧘</div>
+                <div>
+                    <h5>Expert Instructors</h5>
+                    <p>Whether you're a beginner or experienced yogi.</p>
+                </div>
+            </div>
+
+            <div class="feature-box">
+                <div class="icon-box icon2">🌿</div>
+                <div>
+                    <h5>Transformative Power</h5>
+                    <p>Experience real transformation with guided sessions.</p>
+                </div>
+            </div>
+
+            <div class="feature-box">
+                <div class="icon-box icon3">🤝</div>
+                <div>
+                    <h5>Welcoming Community</h5>
+                    <p>Join a supportive yoga environment.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT VIDEO -->
+        <div class="col-md-6">
+            <div class="video-container">
+                <video id="videoYoga">
+                    <source src="yoga.mp4" type="video/mp4">
+                </video>
+                <button class="play-btn" id="playBtn">▶</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- JS -->
+<script>
+// PLAY / PAUSE
+const video = document.getElementById("videoYoga");
+const btn = document.getElementById("playBtn");
+
+btn.addEventListener("click", () => {
+    if (video.paused) {
+        video.play();
+        btn.innerHTML = "❚❚";
+    } else {
+        video.pause();
+        btn.innerHTML = "▶";
+    }
+});
+
+// Animasi muncul saat scroll
+const features = document.querySelectorAll(".feature-box");
+
+window.addEventListener("scroll", () => {
+    features.forEach(el => {
+        const pos = el.getBoundingClientRect().top;
+        const screen = window.innerHeight;
+
+        if (pos < screen - 50) {
+            el.classList.add("show");
+        }
+    });
+});
+</script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<section class="hero">
+    <div class="container h-100 position-relative d-flex align-items-center">
+
+        <!-- TEXT -->
+        <div class="hero-content">
+            <p class="sub">Online Yoga Platform</p>
+            <h1>Where Sustainability<br>Meets Meditation</h1>
+
+            <div class="hero-action">
+                <button class="btn btn-light rounded-pill px-4">
+                    Start Your Journey →
+                </button>
+            </div>
+        </div>
+
+        <!-- LEFT CARD -->
+        <div class="glass-card card-left">
+            <div class="d-flex align-items-center">
+                <div class="avatars">
+                    <img src="https://i.pravatar.cc/30?img=1">
+                    <img src="https://i.pravatar.cc/30?img=2">
+                    <img src="https://i.pravatar.cc/30?img=3">
+                </div>
+                <div class="ms-2">
+                    <strong>4.9</strong>
+                    <small> (1200 Reviews)</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT CARD -->
+        <div class="glass-card card-right d-flex align-items-center">
+            <img src="9.jpg"
+                 class="thumb">
+
+            <div class="ms-3">
+                <small>Upcoming Class</small>
+                <h6>Morning Yoga</h6>
+                <small>07:00 AM</small>
+            </div>
+        </div>
+
+    </div>
+</section>
+<script>
+const cards = document.querySelectorAll('.draggable');
+
+cards.forEach(card => {
+    let isDragging = false;
+    let offsetX, offsetY;
+
+    card.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        offsetX = e.clientX - card.offsetLeft;
+        offsetY = e.clientY - card.offsetTop;
+    });
+
+    document.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+
+        card.style.left = (e.clientX - offsetX) + 'px';
+        card.style.top = (e.clientY - offsetY) + 'px';
+    });
+
+    document.addEventListener('mouseup', () => {
+        isDragging = false;
+    });
+});
+</script>
+
+<!-- INSTRUCTOR -->
+<section class="py-5" id="trainers">
+    <div class="container">
+        <h3 class="mb-4 fade-in">Meet Expert Instructor</h3>
+
+        <div class="row g-4">
+
+            <div class="col-md-4 fade-in">
+                <div class="card card-custom">
+                    <img src="6.jpg" class="card-img-top">
+                    <div class="card-body">
+                        <h5>Michael Yoga</h5>
+                        <p>Mindfulness Expert</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 fade-in">
+                <div class="card card-custom">
+                    <img src="7.jpg" class="card-img-top">
+                    <div class="card-body">
+                        <h5>John Meditation</h5>
+                        <p>Breathing Specialist</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 fade-in">
+                <div class="card card-custom">
+                    <img src="8.jpeg" class="card-img-top">
+                    <div class="card-body">
+                        <h5>Sophia Zen</h5>
+                        <p>Yoga Trainer</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- JS -->
+<script>
+const fadeElements = document.querySelectorAll('.fade-in');
+
+function showOnScroll() {
+    fadeElements.forEach(el => {
+        const top = el.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+
+        if (top < windowHeight - 50) {
+            el.classList.add('show');
+        }
+    });
+}
+
+window.addEventListener('scroll', showOnScroll);
+window.addEventListener('load', showOnScroll);
+</script>
+<!-- ================= FAQ SECTION ================= -->
+<section class="section" id="testimonials">
+  <div class="container">
+    <h2 class="section-title fade-up">Common Questions</h2>
+
+    <div class="row align-items-center g-4">
+      
+      <!-- VIDEO -->
+      <div class="col-lg-6 fade-up">
+        <div class="video-card">
+          <img src="https://images.unsplash.com/photo-1599058917212-d750089bc07e" alt="">
+          
+        </div>
+      </div>
+
+      <!-- FAQ -->
+      <div class="col-lg-6 fade-up">
+        <div class="accordion" id="faq">
+
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#q1">
+                What is online learning?
+              </button>
+            </h2>
+            <div id="q1" class="accordion-collapse collapse show">
+              <div class="accordion-body">
+                Online learning is education that takes place over the internet.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#q2">
+                How do I enroll?
+              </button>
+            </h2>
+            <div id="q2" class="accordion-collapse collapse">
+              <div class="accordion-body">
+                Simply sign up and choose your desired course.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#q3">
+                Is it beginner friendly?
+              </button>
+            </h2>
+            <div id="q3" class="accordion-collapse collapse">
+              <div class="accordion-body">
+                Yes, all levels are welcome.
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= INSTRUCTOR ================= -->
+<section class="section bg-white">
+  <div class="container">
+    
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h2 class="section-title text-start m-0 fade-up">Meet Expert Instructor</h2>
+      <button class="slider-btn" onclick="scrollSlider()">→</button>
+    </div>
+
+    <div class="slider fade-up" id="slider">
+
+      <div class="card-custom">
+        <div class="step">Step 1</div>
+        <h5>Sign up</h5>
+        <p>Create your account and start your yoga journey.</p>
+      </div>
+
+       <div class="card-custom">
+        <div class="step">Step 3</div>
+        <h5>Choose Program</h5>
+        <p>Select the best yoga class for your level</p>
+      </div>
+
+      <div class="card-custom">
+        <div class="step">Step 3</div>
+        <h5>Start Pratice</h5>
+        <p>Follow guided sessions anytime wuth expert instructors.</p>
+      </div>
+
+
+      <div class="card-custom">
+        <div class="step">Step 4</div>
+        <h5>Track Progress</h5>
+        <p>Monitor yaur progess and improve your daily routine.</p>
+      </div>
+
+      
+       <div class="card-custom">
+        <div class="step">Step5 </div>
+        <h5>Track Achive Goal</h5>
+        <p>Reach your fotness goals with consistent practice.</p>
+      </div>
+      </div>
+      </div>
+     </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  // SCROLL ANIMATION
+  const elements = document.querySelectorAll('.fade-up');
+
+  function showOnScroll() {
+    elements.forEach(el => {
+      const top = el.getBoundingClientRect().top;
+      if (top < window.innerHeight - 100) {
+        el.classList.add('active');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', showOnScroll);
+  showOnScroll();
+
+  // SLIDER BUTTON
+  function scrollSlider() {
+    document.getElementById('slider').scrollBy({
+      left: 300,
+      behavior: 'smooth'
+    });
+  }
+</script>
+
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Font (lebih mirip desain modern) -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+
+
+
+<section class="hero">
+
+  <!-- TOP BUTTON -->
+  <div class="top-btn">
+    <button class="btn-glass">
+      Get Started <i class="bi bi-arrow-up-right ms-1"></i>
+    </button>
+  </div>
+
+  <div class="container h-100 d-flex align-items-center">
+    <div class="row w-100 align-items-center">
+
+      <!-- LEFT -->
+      <div class="col-lg-6 text-white left">
+        <span class="label">New Event Available</span>
+
+        <h1 class="title">
+          Your Life For Greater Self <br>
+          Of Yoga Control
+        </h1>
+
+        <div class="subscribe">
+          <p>Subscribe to our newsletter</p>
+
+          <div class="input-wrap">
+            <input type="email" placeholder="Enter your email">
+            <button><i class="bi bi-arrow-right"></i></button>
+          </div>
+
+          <div class="social">
+            <i class="bi bi-facebook"></i>
+            <i class="bi bi-twitter"></i>
+            <i class="bi bi-instagram"></i>
+            <i class="bi bi-youtube"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="col-lg-6 text-white right">
+        <div class="row">
+
+          <div class="col-4">
+            <h6>Courses</h6>
+            <span>Yoga Class</span>
+            <span>Meditation</span>
+            <span>Breathing</span>
+          </div>
+
+          <div class="col-4">
+            <h6>Services</h6>
+            <span>Training</span>
+            <span>Consulting</span>
+            <span>Therapy</span>
+          </div>
+
+          <div class="col-4">
+            <h6>Contact</h6>
+            <span>Email</span>
+            <span>Phone</span>
+            <span>Address</span>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+<!-- FOOTER -->
+<footer class="footer text-center">
+  <div class="footer-content">
+    <h6 class="footer-title">Meditree</h6>
+    <p class="footer-copy">© 2026 All rights reserved</p>
+  </div>
+</footer>
+
+
+<script src="script.js"></script>
+<script>
+window.addEventListener("load", () => {
+  document.querySelector(".left").classList.add("show");
+
+  setTimeout(() => {
+    document.querySelector(".right").classList.add("show");
+  }, 300);
+});
+</script>
+</body>
+</html>
+
+
+</body>
+</html>
+
+</body>
+</html>
+
+</body>
+</html>
